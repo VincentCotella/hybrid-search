@@ -34,7 +34,7 @@ def preprocess_documents():
         processed_docs.append(processed_doc)
     
     # Sauvegarder documents prétraités
-    with open(data_dir / "processed_documents.json", "w") as f:
+    with open(data_dir / "processed_documents.json", "w", encoding='utf-8') as f:
         json.dump(processed_docs, f, indent=2)
     
     print(f"✅ {len(processed_docs)} documents prétraités")

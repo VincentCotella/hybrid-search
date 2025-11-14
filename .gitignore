@@ -1,0 +1,73 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Environnements virtuels
+venv/
+env/
+ENV/
+.venv/
+.env
+
+# IDEs - Éditeurs de code
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+
+# pytest
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs
+*.log
+
+# ===========================================
+# Ignore les fichiers de données volumineux
+data/raw/
+data/processed/
+data/*.json
+data/*.csv
+data/*.pkl
+
+# Ignore les modèles entraînés
+models/*.pkl
+models/*.bin
+models/*.h5
+models/*.pt
+models/*.onnx
+
+# Ignore les index FAISS
+data/*.bin
+data/*.faiss
+
+# Ignore les métriques et logs de MLflow
+mlruns/
+
+# Systèmes d'exploitation
+.DS_Store
+Thumbs.db

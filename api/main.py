@@ -1,19 +1,19 @@
 # api/main.py
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
-from typing import List, Optional
+
 import sys
 import os
+from typing import List, Optional
 
-# Ajouter le répertoire parent au path pour importer nos modules
+# --- Configuration du chemin d'import ---
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
 from indexing.bm25_index import load_bm25_index
 from indexing.faiss_index import load_faiss_index
 from src.utils import clean_and_tokenize
 from sentence_transformers import SentenceTransformer
 import numpy as np
-import json
 
 # --- Configuration et Chargement des Modèles (une seule fois au démarrage) ---
 print("🚀 Démarrage de l'API et chargement des modèles...")
@@ -77,9 +77,8 @@ def reciprocal_rank_fusion(bm25_results, semantic_results, k=60):
     for doc_id in all_doc_ids:
         rrf_score = 0
         if doc_id in bm25_ranks:
-            rrf_score += 1 / (
-                k + bm25_ranks[doc_id] + 1
-            )  # +1 car les rangs commencent à 0
+            # +1 car les rangs commencent à 0
+            rrf_score += 1 / (k + bm25_ranks[doc_id] + 1)
         if doc_id in semantic_ranks:
             rrf_score += 1 / (k + semantic_ranks[doc_id] + 1)
         fusion_scores[doc_id] = rrf_score

@@ -4,7 +4,6 @@ import pickle
 import faiss
 import numpy as np
 from sentence_transformers import SentenceTransformer
-from pathlib import Path
 from src.config import FAISS_INDEX_PATH, SENTENCE_MODEL, DATA_DIR
 
 

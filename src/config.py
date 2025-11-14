@@ -1,5 +1,4 @@
 # src/config.py
-import os
 from pathlib import Path
 
 # Chemins

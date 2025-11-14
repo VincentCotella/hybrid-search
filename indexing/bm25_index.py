@@ -1,6 +1,5 @@
 # indexing/bm25_index.py
 import pickle
-from pathlib import Path
 from rank_bm25 import BM25Okapi
 from src.config import BM25_INDEX_PATH, DATA_DIR
 from src.utils import clean_and_tokenize

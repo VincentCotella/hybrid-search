@@ -9,8 +9,6 @@ from indexing.faiss_index import load_faiss_index
 from sentence_transformers import SentenceTransformer
 from src.utils import clean_and_tokenize
 import numpy as np
-import json
-from pathlib import Path
 
 
 def test_search():

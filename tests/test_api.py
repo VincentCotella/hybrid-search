@@ -4,6 +4,7 @@ from api.main import app
 
 client = TestClient(app)
 
+
 def test_read_root():
     """Teste que le endpoint racine répond correctement."""
     response = client.get("/")

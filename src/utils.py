@@ -4,15 +4,15 @@ from nltk.corpus import stopwords
 import re
 import unicodedata
 
-# liste des stopwords français 
+# liste des stopwords français
 try:
-    stopwords.words('french')
+    stopwords.words("french")
 except LookupError:
     print("Téléchargement des stopwords NLTK...")
-    nltk.download('stopwords')
+    nltk.download("stopwords")
     print("Téléchargement terminé.")
 
-FRENCH_STOPWORDS = set(stopwords.words('french'))
+FRENCH_STOPWORDS = set(stopwords.words("french"))
 
 
 def clean_and_tokenize(text: str) -> list[str]:
@@ -26,25 +26,25 @@ def clean_and_tokenize(text: str) -> list[str]:
     """
     # 1. Normaliser les caractères
     # NFKD sépare les caractères de leur diacritique (ex: 'é' -> 'e' + '´')
-    text = unicodedata.normalize('NFKD', text)
-    
+    text = unicodedata.normalize("NFKD", text)
+
     # 2. Garder uniquement les lettres de base et les espaces
-    text = re.sub(r'[^a-z\s]', '', text, flags=re.IGNORECASE)
-    
+    text = re.sub(r"[^a-z\s]", "", text, flags=re.IGNORECASE)
+
     # 3. Conversion en minuscules et tokenisation
     tokens = text.lower().split()
-    
+
     # 4. Filtrer les stopwords et les tokens courts
     meaningful_tokens = [
-        token for token in tokens 
-        if token not in FRENCH_STOPWORDS and len(token) > 2
+        token for token in tokens if token not in FRENCH_STOPWORDS and len(token) > 2
     ]
-    
+
     return meaningful_tokens
+
 
 # fonction pour nettoyer le texte pour l'affichage (sans tokenisation)
 def clean_text(text: str) -> str:
     """Nettoie le texte pour l'affichage, sans retirer les stopwords."""
-    text = unicodedata.normalize('NFKD', text)
-    text = re.sub(r'[^a-z\s]', '', text, flags=re.IGNORECASE)
-    return ' '.join(text.lower().split())
+    text = unicodedata.normalize("NFKD", text)
+    text = re.sub(r"[^a-z\s]", "", text, flags=re.IGNORECASE)
+    return " ".join(text.lower().split())

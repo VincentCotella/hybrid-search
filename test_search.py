@@ -1,15 +1,17 @@
 # test_search.py (version avec debug)
 import sys
 import os
-sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
+
+sys.path.append(os.path.join(os.path.dirname(__file__), "src"))
 
 from indexing.bm25_index import load_bm25_index, create_bm25_index
 from indexing.faiss_index import load_faiss_index
 from sentence_transformers import SentenceTransformer
-from src.utils import clean_and_tokenize 
+from src.utils import clean_and_tokenize
 import numpy as np
 import json
 from pathlib import Path
+
 
 def test_search():
     # Charger les indexes
@@ -47,12 +49,15 @@ def test_search():
     # --- Recherche Sémantique ---
     print("🧠 Résultats Sémantique:")
     query_embedding = model.encode([query])
-    query_embedding = query_embedding / np.linalg.norm(query_embedding, axis=1, keepdims=True)
+    query_embedding = query_embedding / np.linalg.norm(
+        query_embedding, axis=1, keepdims=True
+    )
     faiss_scores, faiss_results = faiss_index.search(query_embedding, 3)
 
     for i, (idx, score) in enumerate(zip(faiss_results[0], faiss_scores[0])):
         doc = metadata["documents"][idx]
         print(f"  {i+1}. {doc['title']} (score: {score:.4f})")
+
 
 if __name__ == "__main__":
     test_search()
